@@ -15,7 +15,7 @@ Ensure you have Node.js and npm installed on your machine.
 1. Clone the repository:
 
    ```bash
-   git clone <https://github.com/forkeyeee/cv-application>
+   git clone <https://github.com/ForkEyeee/cv-application>
    ```
 
 2. Navigate into the project folder:
