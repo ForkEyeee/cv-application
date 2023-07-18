@@ -55,7 +55,7 @@ This project is built using the following technologies:
 - [React](https://reactjs.org/)
 - [Vite](https://vitejs.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [Shadcn/UI](https://ui.shadcn.com/)
+- [ChakraUI](https://chakra-ui.com//)
 
 ## Features
 
