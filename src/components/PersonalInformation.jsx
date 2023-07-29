@@ -6,35 +6,41 @@ import {
   FormErrorMessage,
   FormHelperText,
 } from "@chakra-ui/react";
-function PersonalInformation({ name, setName }) {
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+function PersonalInformation({ personalInfo, setPersonalInfo }) {
   return (
     <div>
       <FormControl>
         <FormLabel>Name</FormLabel>
         <Input
-          onChange={e => setName(e.target.value)}
-          value={name}
+          onChange={e =>
+            setPersonalInfo({ ...personalInfo, name: e.target.value })
+          }
+          value={personalInfo.name}
           type="text"
         />
         <FormHelperText>Enter your full name.</FormHelperText>
       </FormControl>
+
       <FormControl>
         <FormLabel>Email address</FormLabel>
         <Input
-          onChange={e => setEmail(e.target.value)}
-          value={email}
+          onChange={e =>
+            setPersonalInfo({ ...personalInfo, email: e.target.value })
+          }
+          value={personalInfo.email}
           type="email"
         />
         <FormHelperText>Please enter a valid email address.</FormHelperText>
       </FormControl>
+
       <FormControl>
         <FormLabel>Phone number</FormLabel>
         <Input
-          onChange={e => setPhone(e.target.value)}
-          value={phone}
-          type="number"
+          onChange={e =>
+            setPersonalInfo({ ...personalInfo, phone: e.target.value })
+          }
+          value={personalInfo.phone}
+          type="text"
         />
         <FormHelperText>
           Include your country code if applicable.

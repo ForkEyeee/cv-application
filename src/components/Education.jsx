@@ -6,45 +6,41 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 
-function Education() {
-  const [schoolName, setSchoolName] = useState("");
-  const [studyTitle, setStudyTitle] = useState("");
-  const [studyDate, setStudyDate] = useState("");
-
+function Education({ education, setEducation }) {
   return (
     <div>
       <FormControl>
-        <FormLabel>School Name</FormLabel>
+        <FormLabel>School</FormLabel>
         <Input
-          onChange={e => setSchoolName(e.target.value)}
-          value={schoolName}
+          onChange={e => setEducation({ ...education, school: e.target.value })}
+          value={education.school}
           type="text"
         />
-        <FormHelperText>
-          Please enter the full name of the school.
-        </FormHelperText>
+        <FormHelperText>Enter your school's name.</FormHelperText>
       </FormControl>
+
       <FormControl>
-        <FormLabel>Title of Study</FormLabel>
+        <FormLabel>Title of study</FormLabel>
         <Input
-          onChange={e => setStudyTitle(e.target.value)}
-          value={studyTitle}
+          onChange={e =>
+            setEducation({ ...education, studyTitle: e.target.value })
+          }
+          value={education.studyTitle}
           type="text"
         />
-        <FormHelperText>
-          Enter the title of your course or field of study.
-        </FormHelperText>
+        <FormHelperText>Enter your title of study.</FormHelperText>
       </FormControl>
+
       <FormControl>
-        <FormLabel>Date of Study</FormLabel>
+        <FormLabel>Date of study</FormLabel>
         <Input
-          onChange={e => setStudyDate(e.target.value)}
-          value={studyDate}
-          type="text"
+          onChange={e =>
+            setEducation({ ...education, studyDate: e.target.value })
+          }
+          value={education.studyDate}
+          type="date"
         />
-        <FormHelperText>
-          Enter the time period of your study (e.g., 2019-2023).
-        </FormHelperText>
+        <FormHelperText>Enter your date of study.</FormHelperText>
       </FormControl>
     </div>
   );

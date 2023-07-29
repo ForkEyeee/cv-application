@@ -8,18 +8,35 @@ import RenderCV from "./components/RenderCV";
 
 function App() {
   const [experience, setExperience] = useState([]);
-  const [name, setName] = useState("");
+  const [personalInfo, setPersonalInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [education, setEducation] = useState({
+    school: "",
+    studyTitle: "",
+    studyDate: "",
+  });
 
   function handleAddExperience() {
     setExperience(experience.concat(<Experience />));
   }
   return (
-    <div>
-      <PersonalInformation name={name} setName={setName} />
-      <Education />
-      <Experience handleAddExperience={handleAddExperience} />
-      {experience}
-      <Button colorScheme="blue">Change</Button> <RenderCV name={name} />
+    <div className="flex">
+      <div className="flex-1">
+        <PersonalInformation
+          personalInfo={personalInfo}
+          setPersonalInfo={setPersonalInfo}
+        />
+        <Education education={education} setEducation={setEducation} />
+        {/* <Experience handleAddExperience={handleAddExperience} />
+        {experience}
+        <Button colorScheme="blue">Change</Button> */}
+      </div>
+      <div>
+        <RenderCV />
+      </div>
     </div>
   );
 }
