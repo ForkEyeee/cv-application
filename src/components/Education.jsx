@@ -7,6 +7,8 @@ import {
   Button,
   Text,
   VStack,
+  Box,
+  Flex,
 } from "@chakra-ui/react";
 
 function Education({ education, setEducation }) {
@@ -41,27 +43,49 @@ function Education({ education, setEducation }) {
           </FormControl>
 
           <FormControl>
-            <FormLabel>Date of study</FormLabel>
+            <FormLabel>Start Date</FormLabel>
             <Input
               onChange={e =>
-                setEducation({ ...education, studyDate: e.target.value })
+                setEducation({ ...education, startDate: e.target.value })
               }
-              value={education.studyDate}
+              value={education.startDate}
+              type="date"
+            />
+            <FormHelperText>Enter your date of study.</FormHelperText>
+          </FormControl>
+          <FormControl>
+            <FormLabel>End Date</FormLabel>
+            <Input
+              onChange={e =>
+                setEducation({ ...education, endDate: e.target.value })
+              }
+              value={education.endDate}
               type="date"
             />
             <FormHelperText>Enter your date of study.</FormHelperText>
           </FormControl>
         </div>
       ) : (
-        <VStack>
-          <Text>{education.school}</Text>
-          <Text>{education.studyTitle}</Text>
-          <Text>{education.studyDate}</Text>
+        <VStack align="start">
+          <Box>
+            <Text fontWeight="bold">School:</Text>
+            <Text>{education.school}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">Title of study:</Text>
+            <Text>{education.studyTitle}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">Date of study:</Text>
+            <Text>{education.studyDate}</Text>
+          </Box>
         </VStack>
       )}
-      <Button onClick={() => setIsEdit(!isEdit)}>
-        {isEdit ? "Edit" : "View"}
-      </Button>
+      <Flex justifyContent={"flex-end"}>
+        <Button onClick={() => setIsEdit(!isEdit)}>
+          {isEdit ? "Edit" : "Submit"}
+        </Button>
+      </Flex>
     </div>
   );
 }

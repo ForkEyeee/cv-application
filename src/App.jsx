@@ -3,7 +3,17 @@ import Education from "./components/Education";
 import Experience from "./components/Experience";
 import { useState } from "react";
 import "./index.css";
-import { Button } from "@chakra-ui/react";
+import {
+  HStack,
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  Center,
+  Divider,
+  AbsoluteCenter,
+} from "@chakra-ui/react";
 import RenderCV from "./components/RenderCV";
 import Header from "./components/Header";
 
@@ -17,27 +27,48 @@ function App() {
   const [education, setEducation] = useState({
     school: "",
     studyTitle: "",
-    studyDate: "",
+    startDate: "",
+    endDate: "",
   });
 
   function handleAddExperience() {
     setExperience(experience.concat(<Experience />));
   }
   return (
-    <>
-      <Header />
-      <PersonalInformation
-        personalInfo={personalInfo}
-        setPersonalInfo={setPersonalInfo}
-      />
-      <Education education={education} setEducation={setEducation} />
-      <Experience handleAddExperience={handleAddExperience} />
-      {experience}
-      <Button colorScheme="blue" onClick={handleAddExperience}>
-        Add
-      </Button>
-      <RenderCV />
-    </>
+    <Flex justifyContent={"center"}>
+      <Box>
+        <Header />
+        <Box position="relative" padding="10">
+          <Divider />
+          <AbsoluteCenter bg="white" px="4">
+            Personal Information
+          </AbsoluteCenter>
+        </Box>{" "}
+        <PersonalInformation
+          personalInfo={personalInfo}
+          setPersonalInfo={setPersonalInfo}
+        />
+        <Box position="relative" padding="10">
+          <Divider />
+          <AbsoluteCenter bg="white" px="4">
+            Education
+          </AbsoluteCenter>
+        </Box>
+        <Education education={education} setEducation={setEducation} />
+        <Box position="relative" padding="10">
+          <Divider />
+          <AbsoluteCenter bg="white" px="4">
+            Experience
+          </AbsoluteCenter>
+        </Box>
+        <Experience handleAddExperience={handleAddExperience} />
+        {experience}
+        <Button colorScheme="blue" onClick={handleAddExperience}>
+          Add
+        </Button>
+        <RenderCV />
+      </Box>
+    </Flex>
   );
 }
 
