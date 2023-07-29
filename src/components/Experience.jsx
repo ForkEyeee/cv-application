@@ -8,7 +8,9 @@ import {
   VStack,
   Text,
   Flex,
+  Box,
 } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 
 function Experience() {
   const [workExperience, setWorkExperience] = useState({
@@ -36,9 +38,11 @@ function Experience() {
               value={workExperience.companyName}
               type="text"
             />
-            <FormHelperText>
-              Please enter the full name of the company.
-            </FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Please enter the full name of the company.
+              </FormHelperText>
+            </Box>
           </FormControl>
 
           <FormControl>
@@ -53,9 +57,11 @@ function Experience() {
               value={workExperience.positionTitle}
               type="text"
             />
-            <FormHelperText>
-              Please enter your title at the company.
-            </FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Please enter your title at the company.
+              </FormHelperText>
+            </Box>
           </FormControl>
 
           <FormControl>
@@ -70,9 +76,11 @@ function Experience() {
               value={workExperience.mainTasks}
               type="text"
             />
-            <FormHelperText>
-              Please enter the main tasks you performed at this job.
-            </FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Please enter the main tasks you performed at this job.
+              </FormHelperText>
+            </Box>
           </FormControl>
 
           <FormControl>
@@ -87,9 +95,11 @@ function Experience() {
               value={workExperience.startDate}
               type="date"
             />
-            <FormHelperText>
-              Please enter the start date of your employment.
-            </FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Please enter the start date of your employment.
+              </FormHelperText>
+            </Box>
           </FormControl>
 
           <FormControl>
@@ -104,18 +114,35 @@ function Experience() {
               value={workExperience.endDate}
               type="date"
             />
-            <FormHelperText>
-              If applicable, please enter the end date of your employment.
-            </FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                If applicable, please enter the end date of your employment.
+              </FormHelperText>
+            </Box>
           </FormControl>
         </div>
       ) : (
-        <VStack>
-          <Text>Company: {workExperience.companyName}</Text>
-          <Text>Title: {workExperience.positionTitle}</Text>
-          <Text>Tasks: {workExperience.mainTasks}</Text>
-          <Text>Start Date: {workExperience.startDate}</Text>
-          <Text>End Date: {workExperience.endDate}</Text>
+        <VStack align="center">
+          <Box>
+            <Text fontWeight="bold">Company:</Text>
+            <Text>{workExperience.companyName}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">Position Title:</Text>
+            <Text>{workExperience.positionTitle}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">Main Tasks:</Text>
+            <Text>{workExperience.mainTasks}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">Start Date:</Text>
+            <Text>{workExperience.startDate}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">End Date:</Text>
+            <Text>{workExperience.endDate}</Text>
+          </Box>
         </VStack>
       )}
       <Flex justifyContent={"flex-end"}>
@@ -126,5 +153,16 @@ function Experience() {
     </div>
   );
 }
+
+Experience.propTypes = {
+  experience: PropTypes.shape({
+    companyName: PropTypes.string,
+    positionTitle: PropTypes.string,
+    mainTasks: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+  }).isRequired,
+  setExperience: PropTypes.func.isRequired,
+};
 
 export default Experience;

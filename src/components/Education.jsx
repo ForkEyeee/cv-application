@@ -5,11 +5,12 @@ import {
   FormLabel,
   FormHelperText,
   Button,
-  Text,
   VStack,
-  Box,
+  Text,
   Flex,
+  Box,
 } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 
 function Education({ education, setEducation }) {
   const [isEdit, setIsEdit] = useState(false);
@@ -27,7 +28,9 @@ function Education({ education, setEducation }) {
               value={education.school}
               type="text"
             />
-            <FormHelperText>Enter your school's name.</FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>Enter the name of the school</FormHelperText>
+            </Box>
           </FormControl>
 
           <FormControl>
@@ -39,7 +42,11 @@ function Education({ education, setEducation }) {
               value={education.studyTitle}
               type="text"
             />
-            <FormHelperText>Enter your title of study.</FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Enter the title of your field of study
+              </FormHelperText>
+            </Box>
           </FormControl>
 
           <FormControl>
@@ -51,8 +58,13 @@ function Education({ education, setEducation }) {
               value={education.startDate}
               type="date"
             />
-            <FormHelperText>Enter your date of study.</FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Enter the date you started this study
+              </FormHelperText>
+            </Box>
           </FormControl>
+
           <FormControl>
             <FormLabel>End Date</FormLabel>
             <Input
@@ -62,11 +74,15 @@ function Education({ education, setEducation }) {
               value={education.endDate}
               type="date"
             />
-            <FormHelperText>Enter your date of study.</FormHelperText>
+            <Box pb={4}>
+              <FormHelperText>
+                Enter the date you completed this study
+              </FormHelperText>
+            </Box>
           </FormControl>
         </div>
       ) : (
-        <VStack align="start">
+        <VStack align="center">
           <Box>
             <Text fontWeight="bold">School:</Text>
             <Text>{education.school}</Text>
@@ -76,8 +92,12 @@ function Education({ education, setEducation }) {
             <Text>{education.studyTitle}</Text>
           </Box>
           <Box>
-            <Text fontWeight="bold">Date of study:</Text>
-            <Text>{education.studyDate}</Text>
+            <Text fontWeight="bold">Start Date:</Text>
+            <Text>{education.startDate}</Text>
+          </Box>
+          <Box>
+            <Text fontWeight="bold">End Date:</Text>
+            <Text>{education.endDate}</Text>
           </Box>
         </VStack>
       )}
@@ -89,5 +109,15 @@ function Education({ education, setEducation }) {
     </div>
   );
 }
+
+Education.propTypes = {
+  education: PropTypes.shape({
+    school: PropTypes.string,
+    studyTitle: PropTypes.string,
+    startDate: PropTypes.string,
+    endDate: PropTypes.string,
+  }).isRequired,
+  setEducation: PropTypes.func.isRequired,
+};
 
 export default Education;

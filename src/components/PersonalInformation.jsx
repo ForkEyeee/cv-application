@@ -1,24 +1,29 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Input,
   FormControl,
   FormLabel,
-  FormErrorMessage,
   FormHelperText,
   Button,
-  Text,
   VStack,
-  Box,
+  Text,
   Flex,
+  Box,
 } from "@chakra-ui/react";
 
-function PersonalInformation({ personalInfo, setPersonalInfo }) {
-  const [isEdit, setIsEdit] = useState(false);
+function PersonalInformation() {
+  const [personalInfo, setPersonalInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const [isEdit, setIsEdit] = useState(true);
 
   return (
-    <Box maxW={"100%"}>
-      {!isEdit ? (
-        <div>
+    <div>
+      {isEdit ? (
+        <form>
           <FormControl>
             <FormLabel>Name</FormLabel>
             <Input
@@ -28,8 +33,10 @@ function PersonalInformation({ personalInfo, setPersonalInfo }) {
               value={personalInfo.name}
               type="text"
             />
+            <Box pb={4}>
+              <FormHelperText>Enter your full name</FormHelperText>
+            </Box>
           </FormControl>
-
           <FormControl>
             <FormLabel>Email address</FormLabel>
             <Input
@@ -39,8 +46,10 @@ function PersonalInformation({ personalInfo, setPersonalInfo }) {
               value={personalInfo.email}
               type="email"
             />
+            <Box pb={4}>
+              <FormHelperText>Enter your email address</FormHelperText>
+            </Box>
           </FormControl>
-
           <FormControl>
             <FormLabel>Phone number</FormLabel>
             <Input
@@ -48,12 +57,15 @@ function PersonalInformation({ personalInfo, setPersonalInfo }) {
                 setPersonalInfo({ ...personalInfo, phone: e.target.value })
               }
               value={personalInfo.phone}
-              type="text"
+              type="tel"
             />
+            <Box pb={4}>
+              <FormHelperText>Enter your phone number</FormHelperText>
+            </Box>
           </FormControl>
-        </div>
+        </form>
       ) : (
-        <VStack align="start">
+        <VStack align="center">
           <Box>
             <Text fontWeight="bold">Name:</Text>
             <Text>{personalInfo.name}</Text>
@@ -68,13 +80,22 @@ function PersonalInformation({ personalInfo, setPersonalInfo }) {
           </Box>
         </VStack>
       )}
-      <Flex justifyContent={"flex-end"} pt={5}>
+      <Flex justifyContent={"flex-end"}>
         <Button onClick={() => setIsEdit(!isEdit)}>
-          {isEdit ? "Edit" : "Submit"}
+          {isEdit ? "Submit" : "Edit"}
         </Button>
       </Flex>
-    </Box>
+    </div>
   );
 }
+
+PersonalInformation.propTypes = {
+  personalInfo: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+  }).isRequired,
+  setPersonalInfo: PropTypes.func.isRequired,
+};
 
 export default PersonalInformation;
