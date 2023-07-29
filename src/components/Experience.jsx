@@ -8,19 +8,27 @@ import {
 } from "@chakra-ui/react";
 
 function Experience({ handleAddExperience }) {
-  const [companyName, setCompanyName] = useState("");
-  const [positionTitle, setPositionTitle] = useState("");
-  const [mainTasks, setMainTasks] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [workExperience, setWorkExperience] = useState({
+    companyName: "",
+    positionTitle: "",
+    mainTasks: "",
+    startDate: "",
+    endDate: "",
+  });
+  const [isEdit, setisEdit] = useState(false);
 
   return (
     <div>
       <FormControl>
         <FormLabel>Company Name</FormLabel>
         <Input
-          onChange={e => setCompanyName(e.target.value)}
-          value={companyName}
+          onChange={e =>
+            setWorkExperience(prevState => ({
+              ...prevState,
+              companyName: e.target.value,
+            }))
+          }
+          value={workExperience.companyName}
           type="text"
         />
         <FormHelperText>
@@ -31,8 +39,13 @@ function Experience({ handleAddExperience }) {
       <FormControl>
         <FormLabel>Position Title</FormLabel>
         <Input
-          onChange={e => setPositionTitle(e.target.value)}
-          value={positionTitle}
+          onChange={e =>
+            setWorkExperience(prevState => ({
+              ...prevState,
+              positionTitle: e.target.value,
+            }))
+          }
+          value={workExperience.positionTitle}
           type="text"
         />
         <FormHelperText>Please enter your title at the company.</FormHelperText>
@@ -41,8 +54,13 @@ function Experience({ handleAddExperience }) {
       <FormControl>
         <FormLabel>Main Tasks</FormLabel>
         <Input
-          onChange={e => setMainTasks(e.target.value)}
-          value={mainTasks}
+          onChange={e =>
+            setWorkExperience(prevState => ({
+              ...prevState,
+              mainTasks: e.target.value,
+            }))
+          }
+          value={workExperience.mainTasks}
           type="text"
         />
         <FormHelperText>
@@ -53,8 +71,13 @@ function Experience({ handleAddExperience }) {
       <FormControl>
         <FormLabel>Start Date</FormLabel>
         <Input
-          onChange={e => setStartDate(e.target.value)}
-          value={startDate}
+          onChange={e =>
+            setWorkExperience(prevState => ({
+              ...prevState,
+              startDate: e.target.value,
+            }))
+          }
+          value={workExperience.startDate}
           type="date"
         />
         <FormHelperText>
@@ -65,17 +88,24 @@ function Experience({ handleAddExperience }) {
       <FormControl>
         <FormLabel>End Date</FormLabel>
         <Input
-          onChange={e => setEndDate(e.target.value)}
-          value={endDate}
+          onChange={e =>
+            setWorkExperience(prevState => ({
+              ...prevState,
+              endDate: e.target.value,
+            }))
+          }
+          value={workExperience.endDate}
           type="date"
         />
         <FormHelperText>
           If applicable, please enter the end date of your employment.
         </FormHelperText>
       </FormControl>
-      <Button colorScheme="blue" onClick={handleAddExperience}>
-        Add
-      </Button>
+      {isEdit ? (
+        <Button onClick={() => setisEdit(!isEdit)}>Edit</Button>
+      ) : (
+        <Button onClick={() => setisEdit(!isEdit)}>View</Button>
+      )}
     </div>
   );
 }

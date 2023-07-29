@@ -5,6 +5,7 @@ import { useState } from "react";
 import "./index.css";
 import { Button } from "@chakra-ui/react";
 import RenderCV from "./components/RenderCV";
+import Header from "./components/Header";
 
 function App() {
   const [experience, setExperience] = useState([]);
@@ -23,21 +24,20 @@ function App() {
     setExperience(experience.concat(<Experience />));
   }
   return (
-    <div className="flex">
-      <div className="flex-1">
-        <PersonalInformation
-          personalInfo={personalInfo}
-          setPersonalInfo={setPersonalInfo}
-        />
-        <Education education={education} setEducation={setEducation} />
-        {/* <Experience handleAddExperience={handleAddExperience} />
-        {experience}
-        <Button colorScheme="blue">Change</Button> */}
-      </div>
-      <div>
-        <RenderCV />
-      </div>
-    </div>
+    <>
+      <Header />
+      <PersonalInformation
+        personalInfo={personalInfo}
+        setPersonalInfo={setPersonalInfo}
+      />
+      <Education education={education} setEducation={setEducation} />
+      <Experience handleAddExperience={handleAddExperience} />
+      {experience}
+      <Button colorScheme="blue" onClick={handleAddExperience}>
+        Add
+      </Button>
+      <RenderCV />
+    </>
   );
 }
 
