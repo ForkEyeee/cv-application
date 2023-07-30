@@ -10,13 +10,23 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
 
-function Education({ education, setEducation }) {
+function Education() {
+  const [education, setEducation] = useState({
+    school: "",
+    studyTitle: "",
+    startDate: "",
+    endDate: "",
+  });
   const [isEdit, setIsEdit] = useState(false);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+  }
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       {!isEdit ? (
         <div>
           <FormControl>
@@ -27,6 +37,8 @@ function Education({ education, setEducation }) {
               }
               value={education.school}
               type="text"
+              maxLength={"50"}
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>Enter the name of the school</FormHelperText>
@@ -41,6 +53,8 @@ function Education({ education, setEducation }) {
               }
               value={education.studyTitle}
               type="text"
+              maxLength={"30"}
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -57,6 +71,7 @@ function Education({ education, setEducation }) {
               }
               value={education.startDate}
               type="date"
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -73,6 +88,7 @@ function Education({ education, setEducation }) {
               }
               value={education.endDate}
               type="date"
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -102,22 +118,10 @@ function Education({ education, setEducation }) {
         </VStack>
       )}
       <Flex justifyContent={"flex-end"}>
-        <Button onClick={() => setIsEdit(!isEdit)}>
-          {isEdit ? "Edit" : "Submit"}
-        </Button>
+        <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
       </Flex>
-    </div>
+    </form>
   );
 }
-
-Education.propTypes = {
-  education: PropTypes.shape({
-    school: PropTypes.string,
-    studyTitle: PropTypes.string,
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
-  }).isRequired,
-  setEducation: PropTypes.func.isRequired,
-};
 
 export default Education;

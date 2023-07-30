@@ -10,7 +10,6 @@ import {
   Flex,
   Box,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
 
 function Experience() {
   const [workExperience, setWorkExperience] = useState({
@@ -22,8 +21,13 @@ function Experience() {
   });
   const [isEdit, setIsEdit] = useState(false);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+  }
+
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
       {!isEdit ? (
         <div>
           <FormControl>
@@ -37,6 +41,8 @@ function Experience() {
               }
               value={workExperience.companyName}
               type="text"
+              maxLength={"30"}
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -56,6 +62,8 @@ function Experience() {
               }
               value={workExperience.positionTitle}
               type="text"
+              maxLength={"30"}
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -74,7 +82,8 @@ function Experience() {
                 })
               }
               value={workExperience.mainTasks}
-              type="text"
+              maxLength={"50"}
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -94,6 +103,7 @@ function Experience() {
               }
               value={workExperience.startDate}
               type="date"
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -113,6 +123,7 @@ function Experience() {
               }
               value={workExperience.endDate}
               type="date"
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>
@@ -146,23 +157,10 @@ function Experience() {
         </VStack>
       )}
       <Flex justifyContent={"flex-end"}>
-        <Button onClick={() => setIsEdit(!isEdit)}>
-          {isEdit ? "Edit" : "Submit"}
-        </Button>
+        <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
       </Flex>
-    </div>
+    </form>
   );
 }
-
-Experience.propTypes = {
-  experience: PropTypes.shape({
-    companyName: PropTypes.string,
-    positionTitle: PropTypes.string,
-    mainTasks: PropTypes.string,
-    startDate: PropTypes.string,
-    endDate: PropTypes.string,
-  }).isRequired,
-  setExperience: PropTypes.func.isRequired,
-};
 
 export default Experience;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   Input,
@@ -18,12 +18,17 @@ function PersonalInformation() {
     email: "",
     phone: "",
   });
-  const [isEdit, setIsEdit] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+  }
 
   return (
-    <div>
-      {isEdit ? (
-        <form>
+    <form onSubmit={handleSubmit}>
+      {!isEdit ? (
+        <div>
           <FormControl>
             <FormLabel>Name</FormLabel>
             <Input
@@ -32,6 +37,8 @@ function PersonalInformation() {
               }
               value={personalInfo.name}
               type="text"
+              maxLength={"50"}
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>Enter your full name</FormHelperText>
@@ -45,6 +52,7 @@ function PersonalInformation() {
               }
               value={personalInfo.email}
               type="email"
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>Enter your email address</FormHelperText>
@@ -58,12 +66,13 @@ function PersonalInformation() {
               }
               value={personalInfo.phone}
               type="tel"
+              isRequired
             />
             <Box pb={4}>
               <FormHelperText>Enter your phone number</FormHelperText>
             </Box>
           </FormControl>
-        </form>
+        </div>
       ) : (
         <VStack align="center">
           <Box>
@@ -81,21 +90,10 @@ function PersonalInformation() {
         </VStack>
       )}
       <Flex justifyContent={"flex-end"}>
-        <Button onClick={() => setIsEdit(!isEdit)}>
-          {isEdit ? "Submit" : "Edit"}
-        </Button>
+        <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
       </Flex>
-    </div>
+    </form>
   );
 }
-
-PersonalInformation.propTypes = {
-  personalInfo: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-    phone: PropTypes.string,
-  }).isRequired,
-  setPersonalInfo: PropTypes.func.isRequired,
-};
 
 export default PersonalInformation;

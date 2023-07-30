@@ -9,13 +9,6 @@ import Header from "./components/Header";
 function App() {
   const [experience, setExperience] = useState([]);
 
-  const [education, setEducation] = useState({
-    school: "",
-    studyTitle: "",
-    startDate: "",
-    endDate: "",
-  });
-
   function handleAddExperience() {
     setExperience(experience.concat(<Experience />));
   }
@@ -37,7 +30,7 @@ function App() {
             Education
           </AbsoluteCenter>
         </Box>
-        <Education education={education} setEducation={setEducation} />
+        <Education />
         <Box position="relative" padding="10">
           <Divider />
           <AbsoluteCenter bg="white" px="4">
