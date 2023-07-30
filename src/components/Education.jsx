@@ -9,6 +9,8 @@ import {
   Text,
   Flex,
   Box,
+  Heading,
+  Container,
 } from "@chakra-ui/react";
 
 function Education() {
@@ -26,101 +28,91 @@ function Education() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {!isEdit ? (
-        <div>
-          <FormControl>
-            <FormLabel>School</FormLabel>
-            <Input
-              onChange={e =>
-                setEducation({ ...education, school: e.target.value })
-              }
-              value={education.school}
-              type="text"
-              maxLength={"50"}
-              isRequired
-            />
-            <Box pb={4}>
-              <FormHelperText>Enter the name of the school</FormHelperText>
-            </Box>
-          </FormControl>
+    <Container maxW="container.lg">
+      <form onSubmit={handleSubmit}>
+        {!isEdit ? (
+          <VStack spacing={6} align="stretch">
+            <FormControl isRequired>
+              <FormLabel>School</FormLabel>
+              <Input
+                onChange={e =>
+                  setEducation({ ...education, school: e.target.value })
+                }
+                value={education.school}
+                type="text"
+                maxLength={"50"}
+              />
+              <FormHelperText>Enter the name of the school.</FormHelperText>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Title of study</FormLabel>
-            <Input
-              onChange={e =>
-                setEducation({ ...education, studyTitle: e.target.value })
-              }
-              value={education.studyTitle}
-              type="text"
-              maxLength={"30"}
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl isRequired>
+              <FormLabel>Title of study</FormLabel>
+              <Input
+                onChange={e =>
+                  setEducation({ ...education, studyTitle: e.target.value })
+                }
+                value={education.studyTitle}
+                type="text"
+                maxLength={"30"}
+              />
               <FormHelperText>
-                Enter the title of your field of study
+                Enter the title of your field of study.
               </FormHelperText>
-            </Box>
-          </FormControl>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Start Date</FormLabel>
-            <Input
-              onChange={e =>
-                setEducation({ ...education, startDate: e.target.value })
-              }
-              value={education.startDate}
-              type="date"
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl isRequired>
+              <FormLabel>Start Date</FormLabel>
+              <Input
+                onChange={e =>
+                  setEducation({ ...education, startDate: e.target.value })
+                }
+                value={education.startDate}
+                type="date"
+              />
               <FormHelperText>
-                Enter the date you started this study
+                Enter the date you started this study.
               </FormHelperText>
-            </Box>
-          </FormControl>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>End Date</FormLabel>
-            <Input
-              onChange={e =>
-                setEducation({ ...education, endDate: e.target.value })
-              }
-              value={education.endDate}
-              type="date"
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl>
+              <FormLabel>End Date</FormLabel>
+              <Input
+                onChange={e =>
+                  setEducation({ ...education, endDate: e.target.value })
+                }
+                value={education.endDate}
+                type="date"
+              />
               <FormHelperText>
-                Enter the date you completed this study
+                If applicable, please enter the date you completed this study.
               </FormHelperText>
+            </FormControl>
+          </VStack>
+        ) : (
+          <VStack spacing={4} align="stretch">
+            <Box>
+              <Heading size="md">School:</Heading>
+              <Text>{education.school}</Text>
             </Box>
-          </FormControl>
-        </div>
-      ) : (
-        <VStack align="center">
-          <Box>
-            <Text fontWeight="bold">School:</Text>
-            <Text>{education.school}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Title of study:</Text>
-            <Text>{education.studyTitle}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Start Date:</Text>
-            <Text>{education.startDate}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">End Date:</Text>
-            <Text>{education.endDate}</Text>
-          </Box>
-        </VStack>
-      )}
-      <Flex justifyContent={"flex-end"}>
-        <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
-      </Flex>
-    </form>
+            <Box>
+              <Heading size="md">Title of study:</Heading>
+              <Text>{education.studyTitle}</Text>
+            </Box>
+            <Box>
+              <Heading size="md">Start Date:</Heading>
+              <Text>{education.startDate}</Text>
+            </Box>
+            <Box>
+              <Heading size="md">End Date:</Heading>
+              <Text>{education.endDate ? education.endDate : "Present"}</Text>
+            </Box>
+          </VStack>
+        )}
+        <Flex justifyContent={"flex-end"} marginTop={4}>
+          <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
+        </Flex>
+      </form>
+    </Container>
   );
 }
 

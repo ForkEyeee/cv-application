@@ -14,7 +14,7 @@ function App() {
   }
 
   return (
-    <Flex justifyContent={"center"}>
+    <Flex justifyContent={"center"} minW={"500px"}>
       <Box>
         <Header />
         <Box position="relative" padding="10">

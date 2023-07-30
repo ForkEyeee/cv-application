@@ -9,6 +9,8 @@ import {
   Text,
   Flex,
   Box,
+  Heading,
+  Container,
 } from "@chakra-ui/react";
 
 function Experience() {
@@ -27,139 +29,128 @@ function Experience() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {!isEdit ? (
-        <div>
-          <FormControl>
-            <FormLabel>Company Name</FormLabel>
-            <Input
-              onChange={e =>
-                setWorkExperience({
-                  ...workExperience,
-                  companyName: e.target.value,
-                })
-              }
-              value={workExperience.companyName}
-              type="text"
-              maxLength={"30"}
-              isRequired
-            />
-            <Box pb={4}>
+    <Container maxW="container.lg">
+      <form onSubmit={handleSubmit}>
+        {!isEdit ? (
+          <VStack spacing={6} align="stretch">
+            <FormControl isRequired>
+              <FormLabel>Company Name</FormLabel>
+              <Input
+                onChange={e =>
+                  setWorkExperience({
+                    ...workExperience,
+                    companyName: e.target.value,
+                  })
+                }
+                value={workExperience.companyName}
+                type="text"
+                maxLength={"30"}
+              />
               <FormHelperText>
                 Please enter the full name of the company.
               </FormHelperText>
-            </Box>
-          </FormControl>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Position Title</FormLabel>
-            <Input
-              onChange={e =>
-                setWorkExperience({
-                  ...workExperience,
-                  positionTitle: e.target.value,
-                })
-              }
-              value={workExperience.positionTitle}
-              type="text"
-              maxLength={"30"}
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl isRequired>
+              <FormLabel>Position Title</FormLabel>
+              <Input
+                onChange={e =>
+                  setWorkExperience({
+                    ...workExperience,
+                    positionTitle: e.target.value,
+                  })
+                }
+                value={workExperience.positionTitle}
+                type="text"
+                maxLength={"30"}
+              />
               <FormHelperText>
                 Please enter your title at the company.
               </FormHelperText>
-            </Box>
-          </FormControl>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Main Tasks</FormLabel>
-            <Input
-              onChange={e =>
-                setWorkExperience({
-                  ...workExperience,
-                  mainTasks: e.target.value,
-                })
-              }
-              value={workExperience.mainTasks}
-              maxLength={"50"}
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl isRequired>
+              <FormLabel>Main Tasks</FormLabel>
+              <Input
+                onChange={e =>
+                  setWorkExperience({
+                    ...workExperience,
+                    mainTasks: e.target.value,
+                  })
+                }
+                value={workExperience.mainTasks}
+                maxLength={"50"}
+              />
               <FormHelperText>
                 Please enter the main tasks you performed at this job.
               </FormHelperText>
-            </Box>
-          </FormControl>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>Start Date</FormLabel>
-            <Input
-              onChange={e =>
-                setWorkExperience({
-                  ...workExperience,
-                  startDate: e.target.value,
-                })
-              }
-              value={workExperience.startDate}
-              type="date"
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl isRequired>
+              <FormLabel>Start Date</FormLabel>
+              <Input
+                onChange={e =>
+                  setWorkExperience({
+                    ...workExperience,
+                    startDate: e.target.value,
+                  })
+                }
+                value={workExperience.startDate}
+                type="date"
+              />
               <FormHelperText>
                 Please enter the start date of your employment.
               </FormHelperText>
-            </Box>
-          </FormControl>
+            </FormControl>
 
-          <FormControl>
-            <FormLabel>End Date</FormLabel>
-            <Input
-              onChange={e =>
-                setWorkExperience({
-                  ...workExperience,
-                  endDate: e.target.value,
-                })
-              }
-              value={workExperience.endDate}
-              type="date"
-              isRequired
-            />
-            <Box pb={4}>
+            <FormControl>
+              <FormLabel>End Date</FormLabel>
+              <Input
+                onChange={e =>
+                  setWorkExperience({
+                    ...workExperience,
+                    endDate: e.target.value,
+                  })
+                }
+                value={workExperience.endDate}
+                type="date"
+              />
               <FormHelperText>
                 If applicable, please enter the end date of your employment.
               </FormHelperText>
+            </FormControl>
+          </VStack>
+        ) : (
+          <VStack spacing={4} align="stretch">
+            <Box>
+              <Heading size="md">Company:</Heading>
+              <Text>{workExperience.companyName}</Text>
             </Box>
-          </FormControl>
-        </div>
-      ) : (
-        <VStack align="center">
-          <Box>
-            <Text fontWeight="bold">Company:</Text>
-            <Text>{workExperience.companyName}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Position Title:</Text>
-            <Text>{workExperience.positionTitle}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Main Tasks:</Text>
-            <Text>{workExperience.mainTasks}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Start Date:</Text>
-            <Text>{workExperience.startDate}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">End Date:</Text>
-            <Text>{workExperience.endDate}</Text>
-          </Box>
-        </VStack>
-      )}
-      <Flex justifyContent={"flex-end"}>
-        <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
-      </Flex>
-    </form>
+            <Box>
+              <Heading size="md">Position Title:</Heading>
+              <Text>{workExperience.positionTitle}</Text>
+            </Box>
+            <Box>
+              <Heading size="md">Main Tasks:</Heading>
+              <Text>{workExperience.mainTasks}</Text>
+            </Box>
+            <Box>
+              <Heading size="md">Start Date:</Heading>
+              <Text>{workExperience.startDate}</Text>
+            </Box>
+            <Box>
+              <Heading size="md">End Date:</Heading>
+              <Text>
+                {workExperience.endDate ? workExperience.endDate : "Present"}
+              </Text>
+            </Box>
+          </VStack>
+        )}
+        <Flex justifyContent={"flex-end"} marginTop={4}>
+          <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
+        </Flex>
+      </form>
+    </Container>
   );
 }
 

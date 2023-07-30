@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 import {
   Input,
   FormControl,
@@ -10,6 +9,8 @@ import {
   Text,
   Flex,
   Box,
+  Heading,
+  Container,
 } from "@chakra-ui/react";
 
 function PersonalInformation() {
@@ -26,73 +27,71 @@ function PersonalInformation() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      {!isEdit ? (
-        <div>
-          <FormControl>
-            <FormLabel>Name</FormLabel>
-            <Input
-              onChange={e =>
-                setPersonalInfo({ ...personalInfo, name: e.target.value })
-              }
-              value={personalInfo.name}
-              type="text"
-              maxLength={"50"}
-              isRequired
-            />
-            <Box pb={4}>
-              <FormHelperText>Enter your full name</FormHelperText>
+    <Container>
+      <form onSubmit={handleSubmit}>
+        {!isEdit ? (
+          <VStack spacing={6} align="stretch">
+            <FormControl isRequired>
+              <FormLabel>Name</FormLabel>
+              <Input
+                onChange={e =>
+                  setPersonalInfo({ ...personalInfo, name: e.target.value })
+                }
+                value={personalInfo.name}
+                type="text"
+                maxLength={"50"}
+              />
+              <FormHelperText>Please enter your full name.</FormHelperText>
+            </FormControl>
+
+            <FormControl isRequired>
+              <FormLabel>Email address</FormLabel>
+              <Input
+                onChange={e =>
+                  setPersonalInfo({ ...personalInfo, email: e.target.value })
+                }
+                value={personalInfo.email}
+                type="email"
+              />
+              <FormHelperText>Please your email address.</FormHelperText>
+            </FormControl>
+
+            <FormControl isRequired>
+              <FormLabel>Phone number</FormLabel>
+              <Input
+                onChange={e =>
+                  setPersonalInfo({ ...personalInfo, phone: e.target.value })
+                }
+                value={personalInfo.phone}
+                type="tel"
+                pattern="\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})"
+              />
+              <FormHelperText>
+                Format: (123) 456-7890, 123-456-7890, or 1234567890
+              </FormHelperText>
+            </FormControl>
+          </VStack>
+        ) : (
+          <VStack spacing={4} align="stretch">
+            <Box>
+              <Heading size="md">Name:</Heading>
+              <Text>{personalInfo.name}</Text>
             </Box>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Email address</FormLabel>
-            <Input
-              onChange={e =>
-                setPersonalInfo({ ...personalInfo, email: e.target.value })
-              }
-              value={personalInfo.email}
-              type="email"
-              isRequired
-            />
-            <Box pb={4}>
-              <FormHelperText>Enter your email address</FormHelperText>
+            <Box>
+              <Heading size="md">Email:</Heading>
+              <Text>{personalInfo.email}</Text>
             </Box>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Phone number</FormLabel>
-            <Input
-              onChange={e =>
-                setPersonalInfo({ ...personalInfo, phone: e.target.value })
-              }
-              value={personalInfo.phone}
-              type="tel"
-              isRequired
-            />
-            <Box pb={4}>
-              <FormHelperText>Enter your phone number</FormHelperText>
+            <Box>
+              <Heading size="md">Phone:</Heading>
+              <Text>{personalInfo.phone}</Text>
             </Box>
-          </FormControl>
-        </div>
-      ) : (
-        <VStack align="center">
-          <Box>
-            <Text fontWeight="bold">Name:</Text>
-            <Text>{personalInfo.name}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Email:</Text>
-            <Text>{personalInfo.email}</Text>
-          </Box>
-          <Box>
-            <Text fontWeight="bold">Phone:</Text>
-            <Text>{personalInfo.phone}</Text>
-          </Box>
-        </VStack>
-      )}
-      <Flex justifyContent={"flex-end"}>
-        <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
-      </Flex>
-    </form>
+          </VStack>
+        )}
+        <Flex justifyContent={"flex-end"} marginTop={4}>
+          <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
+        </Flex>
+      </form>
+    </Container>
   );
 }
 
