@@ -10,7 +10,6 @@ import {
   Flex,
   Box,
   Heading,
-  Container,
 } from "@chakra-ui/react";
 
 function Experience() {
@@ -29,7 +28,12 @@ function Experience() {
   }
 
   return (
-    <Container maxW="container.lg">
+    <Flex
+      spacing={6}
+      maxW={{ base: "70%", sm: "100%" }}
+      ml={{ base: "20", sm: "0" }}
+    >
+      {" "}
       <form onSubmit={handleSubmit}>
         {!isEdit ? (
           <VStack spacing={6} align="stretch">
@@ -150,7 +154,7 @@ function Experience() {
           <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
         </Flex>
       </form>
-    </Container>
+    </Flex>
   );
 }
 

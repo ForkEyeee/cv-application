@@ -16,10 +16,9 @@ function App() {
   return (
     <Flex
       justifyContent={"center"}
-      pl={{ base: "10px", sm: "0px" }}
-      pr={{ base: "10px", sm: "0px" }}
-      direction={{ base: "column", sm: "row" }}
-      className="swa"
+      pl={{ base: "50px", sm: "0px" }}
+      pr={{ base: "50px", sm: "0px" }}
+      alignItems={"center"}
     >
       <Box>
         <Header />
@@ -54,6 +53,7 @@ function App() {
           colorScheme="blue"
           onClick={handleAddExperience}
           mt={{ base: "20px", sm: "0px" }}
+          ml={{ base: "20", sm: "0px" }}
         >
           Add Experience
         </Button>

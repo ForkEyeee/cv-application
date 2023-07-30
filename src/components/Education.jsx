@@ -27,7 +27,8 @@ function Education() {
   }
 
   return (
-    <Box maxW="container.lg">
+    <Flex maxW={{ base: "70%", sm: "100%" }} ml={{ base: "20", sm: "0" }}>
+      {" "}
       <form onSubmit={handleSubmit}>
         {!isEdit ? (
           <VStack spacing={6} align="stretch">
@@ -111,7 +112,7 @@ function Education() {
           <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
         </Flex>
       </form>
-    </Box>
+    </Flex>
   );
 }
 

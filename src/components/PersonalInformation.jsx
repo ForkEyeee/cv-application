@@ -26,10 +26,10 @@ function PersonalInformation() {
   }
 
   return (
-    <Box>
+    <Flex maxW={{ base: "70%", sm: "100%" }} ml={{ base: "20", sm: "0" }}>
       <form onSubmit={handleSubmit}>
         {!isEdit ? (
-          <VStack spacing={6} align="stretch">
+          <VStack>
             <FormControl isRequired>
               <FormLabel>Name</FormLabel>
               <Input
@@ -90,7 +90,7 @@ function PersonalInformation() {
           <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
         </Flex>
       </form>
-    </Box>
+    </Flex>
   );
 }
 
