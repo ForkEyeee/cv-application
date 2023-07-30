@@ -1,11 +1,19 @@
-import { HStack, Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 
 function Header() {
   return (
-    <HStack justifyContent={"space-between"} padding={5}>
-      <Heading>CV Application</Heading>
-      <Text pl={20}>Create your own CV</Text>
-    </HStack>
+    <Flex
+      justifyContent={"space-between"}
+      padding={5}
+      flexDirection={{ base: "column", sm: "row" }}
+      gap={{ base: "20px", sm: "0px" }}
+      alignItems={{ base: "center" }}
+    >
+      <Heading fontSize={{ base: "20px", sm: "26px" }}>CV Application</Heading>
+      <Text>
+        <em>Create your CV</em>
+      </Text>
+    </Flex>
   );
 }
 

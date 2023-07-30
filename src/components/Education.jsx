@@ -10,7 +10,6 @@ import {
   Flex,
   Box,
   Heading,
-  Container,
 } from "@chakra-ui/react";
 
 function Education() {
@@ -28,7 +27,7 @@ function Education() {
   }
 
   return (
-    <Container maxW="container.lg">
+    <Box maxW="container.lg">
       <form onSubmit={handleSubmit}>
         {!isEdit ? (
           <VStack spacing={6} align="stretch">
@@ -112,7 +111,7 @@ function Education() {
           <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
         </Flex>
       </form>
-    </Container>
+    </Box>
   );
 }
 

@@ -10,7 +10,6 @@ import {
   Flex,
   Box,
   Heading,
-  Container,
 } from "@chakra-ui/react";
 
 function PersonalInformation() {
@@ -27,7 +26,7 @@ function PersonalInformation() {
   }
 
   return (
-    <Container>
+    <Box>
       <form onSubmit={handleSubmit}>
         {!isEdit ? (
           <VStack spacing={6} align="stretch">
@@ -91,7 +90,7 @@ function PersonalInformation() {
           <Button type="submit">{isEdit ? "Edit" : "Submit"}</Button>
         </Flex>
       </form>
-    </Container>
+    </Box>
   );
 }
 
